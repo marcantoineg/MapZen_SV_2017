@@ -2,21 +2,24 @@
  * Created by Marc-Antoine on 2017-05-02.
  */
 
-// Adds a map to the 'map' div
-//var map = L.Mapzen.map('map');
-// Sets the center of the map to be the San Francisco Bay Area at zoom level 12
-//map.setView([37.7749, -122.4194], 12);
-
 // Sets API Key
 L.Mapzen.apiKey = 'mapzen-DJETAGd';
 
+//Decide which div to use.
 var mapsDivPath = document.getElementById("map") == null ? "mini_map" : "map";
 
+//Creates the the map using the name of a container, the longitude and latitude, the zoom parameter and other options
+//such as the map's overall look.
 var map = L.Mapzen.map(mapsDivPath, {
     center: [46.8748099, -71.29067620000001],
     zoom: 13,
     tangramOptions: {
-        scene: L.Mapzen.BasemapStyles.Tron
+        //scene: L.Mapzen.BasemapStyles.Tron
+        //scene: L.Mapzen.BasemapStyles.BubbleWrap
+        //scene: L.Mapzen.BasemapStyles.Refill
+        scene: L.Mapzen.BasemapStyles.Walkabout
+        //scene: L.Mapzen.BasemapStyles.Cinnabar
+        //scene: L.Mapzen.BasemapStyles.Zinc
     }
 });
 
@@ -26,10 +29,12 @@ var map = L.Mapzen.map(mapsDivPath, {
 var geocoderOptions = {
     placeholder: 'Search a location'
 };
+
+//Adds the oprions to the geocoder and add it to the specified map.
 var geocoder = L.Mapzen.geocoder(geocoderOptions);
 geocoder.addTo(map);
 
-// Adds a geolocation control to the map to ask for geolocation authorisation and then go to the geolocation.
+// Adds the options to the locator and then add it to the map.
 var locator = L.Mapzen.locator();
 locator.setPosition('bottomright');
 locator.addTo(map);
