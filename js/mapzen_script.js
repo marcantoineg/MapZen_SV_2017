@@ -10,23 +10,16 @@
 // Sets API Key
 L.Mapzen.apiKey = 'mapzen-DJETAGd';
 
-if (document.getElementById("map") == null) {
-    var map = L.Mapzen.map('mini_map', {
-        center: [46.8748099, -71.29067620000001],
-        zoom: 13,
-        tangramOptions: {
-            scene: L.Mapzen.BasemapStyles.BubbleWrap
-        }
-    });
-} else {
-    var map = L.Mapzen.map('map', {
-        center: [46.8748099, -71.29067620000001],
-        zoom: 13,
-        tangramOptions: {
-            scene: L.Mapzen.BasemapStyles.BubbleWrap
-        }
-    });
-}
+var mapsDivPath = document.getElementById("map") == null ? "mini_map" : "map";
+
+var map = L.Mapzen.map(mapsDivPath, {
+    center: [46.8748099, -71.29067620000001],
+    zoom: 13,
+    tangramOptions: {
+        scene: L.Mapzen.BasemapStyles.Tron
+    }
+});
+
 
 // Adds a Mapzen Search box (a.k.a. geocoder) to the map. You can either specify your key in the
 // geocoder function or in a global var and add options to geocoder as follow.
